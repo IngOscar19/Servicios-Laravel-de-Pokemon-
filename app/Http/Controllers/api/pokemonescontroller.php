@@ -51,11 +51,11 @@ class PokemonesController extends Controller
             ]);
         }
 
-        // Asigna el id_user automáticamente del usuario autenticado
+        // se da el id user al pokemon
         $data = $request->all();
         $data['id_user'] = $request->user()->id;
 
-        // Crea el Pokémon
+        // Crea al Pokémon
         $pokemon = Pokemones::create($data);
 
         return response()->json([
@@ -99,7 +99,7 @@ class PokemonesController extends Controller
             ]);
         }
 
-        // Verifica si el usuario autenticado es el creador del Pokémon
+        // auth si es el que creo el pokemon
         if ($pokemon->id_user !== $request->user()->id) {
             return response()->json([
                 'estatus' => 0,
@@ -148,7 +148,6 @@ class PokemonesController extends Controller
             ]);
         }
 
-        // Verifica si el usuario autenticado es el creador del Pokémon
         if ($pokemon->id_user !== request()->user()->id) {
             return response()->json([
                 'estatus' => 0,
@@ -164,3 +163,4 @@ class PokemonesController extends Controller
         ]);
     }
 }
+    
